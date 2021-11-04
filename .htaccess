@@ -1,0 +1,11 @@
+RewriteEngine On
+
+# Remove .php extension from url
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php
+
+# Redirect to index.php if file or folder requested doesn't exist
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+?)/?$ index.php?url=$1 [L,QSA]
