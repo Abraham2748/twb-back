@@ -3,7 +3,7 @@
 $current = dirname(__FILE__);
 $data = file_get_contents($current . "/" . "server-config.json");
 $config = json_decode($data, true);
-$connection = $config["connection"];
+$connectionData = $config["connection"];
 
 $server = $connectionData['server'];
 $user = $connectionData['user'];
