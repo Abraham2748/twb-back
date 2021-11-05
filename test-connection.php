@@ -12,7 +12,7 @@ $database = $connectionData['database'];
 $port = $connectionData['port'];
 
 $connection = new mysqli($server, $user, $password, $database, $port);
-if ($this->connection->connect_errno) {
+if ($connection->connect_errno) {
     echo "Error connecting";
     die();
 }
