@@ -8,7 +8,7 @@ $responses = new Responses();
 
 header('Content-type: application/json');
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $postBody = file_get_contents("php://input");
+    $postBody = json_decode(file_get_contents("php://input"), true);
     $data = $responses->ok($postBody);
 } else {
     $data = $responses->error_405();
