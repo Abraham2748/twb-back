@@ -60,6 +60,17 @@ class Responses
         return $this->response;
     }
 
+    public function error_404($message = "The requested resource was not found.")
+    {
+        $this->response["status"] = "error";
+        $this->response["result"] = array(
+            "error_id" => "404",
+            "error_msg" => $message,
+        );
+        http_response_code(404);
+        return $this->response;
+    }
+
 
     public function error_500()
     {
