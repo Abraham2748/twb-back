@@ -44,7 +44,7 @@ function getUser($id)
     if (count($result) == 1) {
         return $responses->ok($result[0]);
     } else {
-        return $responses->error_200("User not found");
+        return $responses->error_404("User not found");
     }
 }
 
