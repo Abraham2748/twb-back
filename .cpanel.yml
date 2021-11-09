@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/inovzubs/api.inovoso.com/twb-back/
+    - export DEPLOYPATH=/home/inovzubs/api.inovoso.com/twb/
     - /bin/cp -R . $DEPLOYPATH
