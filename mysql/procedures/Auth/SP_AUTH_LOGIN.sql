@@ -1,13 +1,13 @@
 DROP PROCEDURE IF EXISTS SP_AUTH_LOGIN;
 DELIMITER $
 CREATE PROCEDURE SP_AUTH_LOGIN(
-    IN _email INT,
+    IN _username INT,
     IN _password INT)
 BEGIN
     DECLARE _id INT;
     DECLARE _token CHAR(32);
     SELECT User.Id INTO _id FROM User
-    WHERE User.Email = _email 
+    WHERE User.Username = _username 
     AND User.Password = _password;
     IF _id IS NOT NULL THEN
         SET _token = MD5(RAND());
