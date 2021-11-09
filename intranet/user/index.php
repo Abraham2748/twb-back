@@ -19,6 +19,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
         if (isset($_GET['id'])) {
             $data = getUser($_GET['id']);
+        } else if (isset($_GET['page']) && isset($_GET['rowsPerPage'])) {
+            $data = getUsers($_GET['page'], $_GET['rowsPerPage']);
         } else {
             $data = $responses->error_400();
         }
@@ -32,6 +34,21 @@ switch ($_SERVER['REQUEST_METHOD']) {
     default:
         $data = $responses->error_405();
         break;
+}
+
+function getUsers($page, $rowsPerPage)
+{
+    global $connection;
+    global $responses;
+    $result = $connection->callProcedure('SP_USER_GET_LIST', array(
+        '_page' => $page,
+        '_rowsPerPage' => $rowsPerPage,
+    ));
+    if (count($result) > 0) {
+        return $responses->ok($result);
+    } else {
+        return $responses->error_404("Users not found");
+    }
 }
 
 function getUser($id)
