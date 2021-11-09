@@ -33,33 +33,6 @@ class Connection
         return json_decode($data, true);
     }
 
-    public function getData($sql_query)
-    {
-        $results = $this->connection->query($sql_query);
-        $resultArray = array();
-        foreach ($results as $key => $value) {
-            $resultArray[] = $value;
-        }
-        return $resultArray;
-    }
-
-    public function nonQuery($sql_query)
-    {
-        $this->connection->query($sql_query);
-        return $this->connection->affected_rows;
-    }
-
-    public function nonQueryId($sql_query)
-    {
-        $this->connection->query($sql_query);
-        $rows = $this->connection->affected_rows;
-        if ($rows >= 1) {
-            return $this->connection->insert_id;
-        } else {
-            return 0;
-        }
-    }
-
     public function callProcedure($procedureName, $parameters)
     {
         $sql = "CALL " . $procedureName . "(";
