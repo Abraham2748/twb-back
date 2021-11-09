@@ -11,7 +11,7 @@ $postBody = json_decode(file_get_contents("php://input"), true);
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'POST':
         if (validateUser($postBody)) {
-            $data = $responses->ok(':)');
+            $data = addUser($postBody);
         } else {
             $data = $responses->error_400();
         }
@@ -30,6 +30,19 @@ switch ($_SERVER['REQUEST_METHOD']) {
         break;
 }
 
+function addUser($user)
+{
+    global $connection;
+    global $responses;
+    $result = $connection->callProcedure('SP_USER_ADD', array(
+        '_username' => $user['username'],
+        '_password' => $user['password'],
+        '_firstName' => $user['firstName'],
+        '_lastName' => $user['lastName'],
+        '_documentNumber' => $user['documentNumber'],
+    ));
+    return $responses->ok($result);
+}
 
 function validateUser($user)
 {
