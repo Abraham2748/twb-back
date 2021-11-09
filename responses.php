@@ -12,6 +12,7 @@ class Responses
     {
         $this->response["status"] = "ok";
         $this->response["result"] = $result;
+        http_response_code(200);
         return $this->response;
     }
 
@@ -22,6 +23,7 @@ class Responses
             "error_id" => "405",
             "error_msg" => "Method Not Allowed",
         );
+        http_response_code(405);
         return $this->response;
     }
 
@@ -32,6 +34,7 @@ class Responses
             "error_id" => "200",
             "error_msg" => $message,
         );
+        http_response_code(200);
         return $this->response;
     }
 
@@ -42,6 +45,7 @@ class Responses
             "error_id" => "400",
             "error_msg" => "Incomplete data",
         );
+        http_response_code(400);
         return $this->response;
     }
 
@@ -52,6 +56,7 @@ class Responses
             "error_id" => "401",
             "error_msg" => "Invalid or expired token",
         );
+        http_response_code(401);
         return $this->response;
     }
 
@@ -63,6 +68,7 @@ class Responses
             "error_id" => "500",
             "error_msg" => "Internal Server Error",
         );
+        http_response_code(500);
         return $this->response;
     }
 }
