@@ -13,7 +13,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         if (validateUser($postBody)) {
             $data = $responses->ok(':)');
         } else {
-            $data = $responses->ok(':(');
+            return $responses->error_400();
         }
         break;
     case 'GET':
