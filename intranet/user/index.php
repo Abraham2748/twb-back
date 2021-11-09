@@ -17,7 +17,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
         }
         break;
     case 'GET':
-        $data = $responses->ok($postBody);
+        if (isset($_GET['id'])) {
+            $data = getUser($_GET['id']);
+        } else {
+            $data = $responses->error_400();
+        }
         break;
     case 'PUT':
         $data = $responses->ok($postBody);
@@ -28,6 +32,16 @@ switch ($_SERVER['REQUEST_METHOD']) {
     default:
         $data = $responses->error_405();
         break;
+}
+
+function getUser($id)
+{
+    global $connection;
+    global $responses;
+    $result = $connection->callProcedure('SP_USER_GET', array(
+        '_id' => $id,
+    ));
+    return $responses->ok($result);
 }
 
 function addUser($user)
