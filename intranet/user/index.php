@@ -26,7 +26,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
         }
         break;
     case 'PUT':
-        $data = $responses->ok($postBody);
+        if (isset($_GET['id']) && validateUser($postBody)) {
+            $data = updateUser($_GET['id'], $postBody);
+        } else {
+            $data = $responses->error_400();
+        }
         break;
     case 'DELETE':
         $data = $responses->ok($postBody);
@@ -34,6 +38,21 @@ switch ($_SERVER['REQUEST_METHOD']) {
     default:
         $data = $responses->error_405();
         break;
+}
+
+function updateUser($id, $user)
+{
+    global $connection;
+    global $responses;
+    $result = $connection->callProcedure('SP_USER_UPDATE', array(
+        '_id' => $id,
+        '_username' => $user['username'],
+        '_password' => $user['password'],
+        '_firstName' => $user['firstName'],
+        '_lastName' => $user['lastName'],
+        '_documentNumber' => $user['documentNumber'],
+    ));
+    return $responses->ok($result);
 }
 
 function getUsers($page, $rowsPerPage)
