@@ -33,11 +33,25 @@ switch ($_SERVER['REQUEST_METHOD']) {
         }
         break;
     case 'DELETE':
-        $data = $responses->ok($postBody);
+        if (isset($_GET['id'])) {
+            $data = deleteUser($_GET['id']);
+        } else {
+            $data = $responses->error_400();
+        }
         break;
     default:
         $data = $responses->error_405();
         break;
+}
+
+function deleteUser($id)
+{
+    global $connection;
+    global $responses;
+    $result = $connection->callProcedure('SP_USER_DELETE', array(
+        '_id' => $id,
+    ));
+    return $responses->ok($result);
 }
 
 function updateUser($id, $user)
