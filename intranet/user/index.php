@@ -60,6 +60,7 @@ function updateUser($id, $user)
     global $responses;
     $result = $connection->callProcedure('SP_USER_UPDATE', array(
         '_id' => $id,
+        '_idGender' => $user['idGender'],
         '_username' => $user['username'],
         '_password' => $user['password'],
         '_firstName' => $user['firstName'],
@@ -103,6 +104,7 @@ function addUser($user)
     global $connection;
     global $responses;
     $result = $connection->callProcedure('SP_USER_ADD', array(
+        '_idGender' => $user['idGender'],
         '_username' => $user['username'],
         '_password' => $user['password'],
         '_firstName' => $user['firstName'],
@@ -116,7 +118,7 @@ function validateUser($user)
 {
     return isset($user["username"]) && isset($user["password"])
         && isset($user["firstName"]) && isset($user["lastName"])
-        && isset($user["documentNumber"]);
+        && isset($user["documentNumber"]) && isset($user["idGender"]);
 }
 
 echo json_encode($data);
