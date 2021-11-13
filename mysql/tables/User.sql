@@ -3,10 +3,13 @@ DROP TABLE IF EXISTS User;
 
 CREATE TABLE User (
     Id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    Id_Gender INT NOT NULL,
     Username VARCHAR(64) NOT NULL,
     Password CHAR(32) NOT NULL,
     FirstName VARCHAR(64) NOT NULL,
     LastName VARCHAR(64) NOT NULL,
     DocumentNumber VARCHAR(64) NOT NULL,
-    Active BOOLEAN NOT NULL
+    Active BOOLEAN NOT NULL,
+    
+    FOREIGN KEY (Id_Gender) REFERENCES Gender(Id)
 );
