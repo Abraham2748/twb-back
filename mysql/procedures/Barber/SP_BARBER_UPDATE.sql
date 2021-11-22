@@ -8,7 +8,7 @@ CREATE PROCEDURE SP_BARBER_UPDATE(
     IN _documentNumber VARCHAR(64),
     IN _photo LONGTEXT)
 BEGIN
-    UPDATE User SET
+    UPDATE Barber SET
         Id_Gender = _idGender,
         FirstName = _firstName,
         LastName = _lastName,
