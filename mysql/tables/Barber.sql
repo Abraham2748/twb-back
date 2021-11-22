@@ -1,0 +1,13 @@
+DROP TABLE IF EXISTS Barber;
+
+CREATE TABLE Barber (
+    Id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    Id_Gender INT NOT NULL,
+    FirstName VARCHAR(64) NOT NULL,
+    LastName VARCHAR(64) NOT NULL,
+    DocumentNumber VARCHAR(64) NOT NULL,
+    Photo LONGTEXT NOT NULL,
+    Active BOOLEAN NOT NULL,
+    
+    FOREIGN KEY (Id_Gender) REFERENCES Gender(Id)
+);
