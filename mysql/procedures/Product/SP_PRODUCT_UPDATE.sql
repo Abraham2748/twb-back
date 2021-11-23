@@ -7,7 +7,7 @@ CREATE PROCEDURE SP_PRODUCT_UPDATE(
     IN _price CHAR(32),
     IN _photo LONGTEXT)
 BEGIN
-    UPDATE User SET
+    UPDATE Product SET
         Id_ProductCategory = _idProductCategory,
         Name = _name,
         Price = _price,
