@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS Product;
 DROP TABLE IF EXISTS ProductCategory;
 
 CREATE TABLE ProductCategory (
