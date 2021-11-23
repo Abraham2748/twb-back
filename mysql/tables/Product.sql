@@ -1,0 +1,12 @@
+DROP TABLE IF EXISTS Product;
+
+CREATE TABLE Product (
+    Id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    Id_ProductCategory INT NOT NULL,
+    Name VARCHAR(64) NOT NULL,
+    Price DECIMAL(12,2) NOT NULL,
+    Photo LONGTEXT NOT NULL,
+    Active BOOLEAN NOT NULL,
+
+    FOREIGN KEY (Id_ProductCategory) REFERENCES ProductCategory(Id)
+);
