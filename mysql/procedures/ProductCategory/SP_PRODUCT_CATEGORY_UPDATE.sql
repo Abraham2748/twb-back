@@ -5,7 +5,7 @@ CREATE PROCEDURE SP_PRODUCT_CATEGORY_UPDATE(
     IN _name VARCHAR(64),
     IN _photo LONGTEXT)
 BEGIN
-    UPDATE User SET
+    UPDATE ProductCategory SET
         Name = _name,
         Photo = _photo
     WHERE Id = _id;
