@@ -1,6 +1,7 @@
 DROP PROCEDURE IF EXISTS SP_USER_ADD;
 DELIMITER $
 CREATE PROCEDURE SP_USER_ADD(
+    IN _idUserRole INT,
     IN _idGender INT,
     IN _username VARCHAR(64),
     IN _password CHAR(32),
@@ -9,6 +10,7 @@ CREATE PROCEDURE SP_USER_ADD(
     IN _documentNumber VARCHAR(64))
 BEGIN
     INSERT INTO User(
+        Id_UserRole,
         Id_Gender,
         Username,
         Password,
@@ -17,6 +19,7 @@ BEGIN
         DocumentNumber,
         Active)
     VALUES (
+        _idUserRole,
         _idGender,
         _username,
         _password,
