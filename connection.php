@@ -48,4 +48,22 @@ class Connection
         }
         return $resultArray;
     }
+
+    public function authenticate($error401)
+    {
+        $headers = getallheaders();
+        $authorized = false;
+        if (isset($headers["Authorization"])) {
+            $result = $this->callProcedure('SP_AUTH_VALIDATE_TOKEN', array(
+                '_token' => substr($headers["Authorization"], 7),
+            ));
+            $authorized = $result[0]['Authorize'] == 1;
+        }
+
+        if (!$authorized) {
+            echo json_encode($error401);
+            http_response_code(401);
+            die();
+        }
+    }
 }
