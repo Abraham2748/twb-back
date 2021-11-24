@@ -4,7 +4,7 @@ CREATE PROCEDURE SP_PRODUCT_UPDATE(
     IN _id INT,
     IN _idProductCategory INT,
     IN _name VARCHAR(64),
-    IN _price CHAR(32),
+    IN _price BIGINT,
     IN _photo LONGTEXT)
 BEGIN
     UPDATE Product SET

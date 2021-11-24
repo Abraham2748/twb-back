@@ -3,7 +3,7 @@ DELIMITER $
 CREATE PROCEDURE SP_PRODUCT_ADD(
     IN _idProductCategory INT,
     IN _name VARCHAR(64),
-    IN _price CHAR(32),
+    IN _price BIGINT,
     IN _photo LONGTEXT)
 BEGIN
     INSERT INTO Product(
