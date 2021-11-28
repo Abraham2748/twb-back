@@ -49,17 +49,6 @@ class Responses
         return $this->response;
     }
 
-    public function error_401()
-    {
-        $this->response["status"] = "error";
-        $this->response["result"] = array(
-            "error_id" => "401",
-            "error_msg" => "Invalid or expired token",
-        );
-        http_response_code(401);
-        return $this->response;
-    }
-
     public function error_404($message = "The requested resource was not found.")
     {
         $this->response["status"] = "error";

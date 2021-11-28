@@ -50,7 +50,7 @@ class Connection
         return $resultArray;
     }
 
-    public function authenticate($error401)
+    public function authenticate()
     {
         $headers = getallheaders();
         $authorized = false;
@@ -62,6 +62,13 @@ class Connection
         }
 
         if (!$authorized) {
+            $error401 = array(
+                'status' => 'Unauthorized',
+                'result' => array(
+                    'error_id' => '401',
+                    'message' => 'Invalid or expired token'
+                )
+            );
             echo json_encode($error401);
             http_response_code(401);
             die();
