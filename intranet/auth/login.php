@@ -9,9 +9,34 @@ $responses = new Responses();
 header('Content-type: application/json');
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $postBody = json_decode(file_get_contents("php://input"), true);
-    $data = $responses->ok($postBody);
+    if (isset($postBody['username']) && isset($postBody["password"])) {
+        $username = $postBody["username"];
+        $password = $postBody["password"];
+        $userData = getUserData($username, $password);
+        if ($userData) {
+            $data = $responses->ok($userData);
+        } else {
+            $data = $_responses->error_200("Wrong email or password");
+        }
+    } else {
+        $data = $_responses->error_400();
+    }
 } else {
     $data = $responses->error_405();
+}
+
+function getUserData($email, $password)
+{
+    global $connection;
+    $result = $connection->callProcedure('SP_AUTH_LOGIN', array(
+        '_username' => $email,
+        '_password' => $password
+    ));
+    if (count($result) == 1) {
+        return $result[0];
+    } else {
+        return null;
+    }
 }
 
 echo json_encode($data);
