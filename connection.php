@@ -46,6 +46,7 @@ class Connection
         foreach ($results as $key => $value) {
             $resultArray[] = $value;
         }
+        mysqli_next_result($this->connection);
         return $resultArray;
     }
 
