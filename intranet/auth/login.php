@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($userData) {
             $data = $responses->ok($userData);
         } else {
-            $data = $_responses->error_200("Wrong email or password");
+            $data = $responses->error_200("Wrong username or password");
         }
     } else {
         $data = $_responses->error_400();
