@@ -1,8 +1,8 @@
 DROP PROCEDURE IF EXISTS SP_AUTH_LOGIN;
 DELIMITER $
 CREATE PROCEDURE SP_AUTH_LOGIN(
-    IN _username INT,
-    IN _password INT)
+    IN _username VARCHAR(64),
+    IN _password CHAR(32))
 BEGIN
     DECLARE _id INT;
     DECLARE _token CHAR(32);
