@@ -6,7 +6,6 @@ require_once('../../responses.php');
 $connection = new Connection();
 $responses = new Responses();
 
-header('Content-type: application/json');
 $connection->authenticate();
 $postBody = json_decode(file_get_contents("php://input"), true);
 switch ($_SERVER['REQUEST_METHOD']) {
