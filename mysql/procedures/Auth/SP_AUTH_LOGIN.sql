@@ -13,7 +13,7 @@ BEGIN
         SET _token = MD5(RAND());
         INSERT INTO UserToken (Id_User, Token, LastDate)
         VALUES (_id, _token, UTC_TIMESTAMP());
-        SELECT *, _token AS Token FROM User WHERE User.Id = _id;
+        SELECT _token AS Token;
     END IF;
 END $
 DELIMITER ;
