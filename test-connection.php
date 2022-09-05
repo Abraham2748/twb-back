@@ -16,4 +16,4 @@ if ($connection->connect_errno) {
     echo "Error connecting";
     die();
 }
-echo "Connected";
+echo "Successfully connected";
